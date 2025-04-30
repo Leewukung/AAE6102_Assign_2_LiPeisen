@@ -116,7 +116,7 @@ The following MATLAB code framework was implemented to process satellite visibil
 
 We introduce the skymask to improve the GNSS positioning performance by using the Urban data provided. The result is shown below:
 
-![The Screenshot of Operation Result](./images/Task2.jpg)
+![The Screenshot of Operation Result](./Task2.jpg)
 
 ## Task 3: RAIM (Receiver Autonomous Integrity Monitoring)
 
