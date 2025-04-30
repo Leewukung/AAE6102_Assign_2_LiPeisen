@@ -77,7 +77,7 @@ For **smartphone navigation**, **DGNSS** provides accessible and sufficient accu
 
 Based on satEA and satAZ, we have drawn the mask plots as follows:
 
-![Skyplot with Skymask and Satellites](images/Skyplot.png)
+![Skyplot with Skymask and Satellites](./images/Skyplot.png)
 
 The following MATLAB code framework was implemented to process satellite visibility data and improve positioning accuracy. Each step in the process is outlined below, along with the corresponding code in `Assign2_Task2.m`.
 
@@ -115,6 +115,8 @@ The following MATLAB code framework was implemented to process satellite visibil
 ### Calculation and Result Analysis
 
 We introduce the skymask to improve the GNSS positioning performance by using the Urban data provided. The result is shown below:
+
+![The Screenshot of Operation Result](./images/Task2.jpg)
 
 ## Task 3: RAIM (Receiver Autonomous Integrity Monitoring)
 
