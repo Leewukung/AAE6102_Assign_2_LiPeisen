@@ -173,7 +173,7 @@ The detailed MATLAB code for implementing the RAIM algorithm, including data ini
 - The chi-squared threshold is calculated using the chi-squared distribution based on the number of satellites and the false alarm probability (PFA).
 - This threshold is used to assess whether the position solution is statistically valid and to exclude outliers (faulty measurements).
 
-## Task 4: Low Earth Orbit (LEO) Satellites
+## Task 4: LEO
 
 ### Prompt:
 Assume you are an expert in satellite navigation systems. I want to explore the difficulties and challenges associated with using Low Earth Orbit (LEO) communication satellites for GNSS navigation. Please provide a detailed discussion covering the following aspects:
