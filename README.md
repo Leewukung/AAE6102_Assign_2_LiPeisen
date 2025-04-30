@@ -118,9 +118,7 @@ We introduce the skymask to improve the GNSS positioning performance by using th
 
 ![The Screenshot of Calculation Result](./images/Task2.png)
 
-## Task 3: RAIM (Receiver Autonomous Integrity Monitoring)
-
-### The RAIM Algorithm Overview
+## Task 3: RAIM
 
 The RAIM algorithm is based on the concept of using weighted least squares (WLS) to calculate the position of a receiver. The core idea is to assess the integrity of GNSS data by detecting faulty measurements and removing them iteratively, based on a defined probability of false alarm (PFA) and a chi-squared threshold.
 
