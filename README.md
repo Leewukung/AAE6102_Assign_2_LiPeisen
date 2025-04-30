@@ -71,11 +71,13 @@ When comparing Differential GNSS (DGNSS), Real-Time Kinematic (RTK), Precise Poi
 
 ### Conclusion
 
-For smartphone navigation, **DGNSS** provides accessible and sufficient accuracy for everyday users. **RTK** and **PPP-RTK** are better suited for high-precision, professional applications, but their high infrastructure demands and costs limit widespread use in consumer smartphones. **PPP** offers high accuracy but is better suited for post-processing applications rather than real-time navigation on smartphones.
+For **smartphone navigation**, **DGNSS** provides accessible and sufficient accuracy for everyday users. **RTK** and **PPP-RTK** are better suited for high-precision, professional applications, but their high infrastructure demands and costs limit widespread use in consumer smartphones. **PPP** offers high accuracy but is better suited for post-processing applications rather than real-time navigation on smartphones.
 
 ## Task 2: GNSS in Urban Areas
 
 Based on satEA and satAZ, we have drawn the mask plots as follows:
+
+![Skyplot with Skymask and Satellites](./D:\GNSS_Assignment2\AAE6102_Assign_2_LiPeisen\Skyplot.jpg)
 
 The following MATLAB code framework was implemented to process satellite visibility data and improve positioning accuracy. Each step in the process is outlined below, along with the corresponding code in `Assign2_Task2.m`.
 
