@@ -1,5 +1,8 @@
 # AAE6102 Assignment 2
 
+Model: ChatGPT 4o
+Comment: It is more logical and greater for comparison and conclusion in English contexts.
+
 ## Task 1: Differential GNSS Positioning
 
 ### Prompt:
@@ -72,40 +75,44 @@ For smartphone navigation, **DGNSS** provides accessible and sufficient accuracy
 
 ## Task 2: GNSS in Urban Areas
 
-### MATLAB Code Framework
+Based on satEA and satAZ, we have drawn the mask plots as follows:
 
 The following MATLAB code framework was implemented to process satellite visibility data and improve positioning accuracy. Each step in the process is outlined below, along with the corresponding code in `Assign2_Task2.m`.
 
-```matlab
-% Step 1: Data Initialization and Setup
-% Extract actual satellite elevation (satEA) and azimuth (satAZ) angles from the provided GNSS solutions.
-% Define theoretical satellite elevation angles (theoretical_elevation) for various azimuth intervals based on the skymask.
-% Set the elevation threshold to filter out satellites with elevations below a certain value (elevation_threshold).
+## Step 1: Data Initialization and Setup
+- **Extract actual satellite elevation (satEA) and azimuth (satAZ) angles** from the provided GNSS solutions.
+- **Define theoretical satellite elevation angles** (`theoretical_elevation`) for various azimuth intervals based on the skymask.
+- **Set the elevation threshold** (`elevation_threshold`) to filter out satellites with elevations below a certain value.
 
-% Step 2: Initialize Visibility and Data Storage
-% Create a logical array 'visible' initialized to false, assuming initially that no satellites are visible.
-% Initialize an array 'angle_diff' to store the difference between the actual and theoretical elevation angles for each satellite.
+## Step 2: Initialize Visibility and Data Storage
+- **Create a logical array `visible`** initialized to `false`, assuming initially that no satellites are visible.
+- **Initialize an array `angle_diff`** to store the difference between the actual and theoretical elevation angles for each satellite.
 
-% Step 3: Loop Through Each Satellite to Determine Visibility
-% For each satellite, retrieve its azimuth (az) and elevation (ea).
-% Find the azimuth interval to which the satellite belongs.
-% Interpolate the theoretical elevation angle for the given azimuth.
-% Calculate the difference between the actual and theoretical elevation angles.
-% Check if the satellite's elevation is greater than or equal to the theoretical elevation, marking it as visible if the condition is met.
+## Step 3: Loop Through Each Satellite to Determine Visibility
+- For each satellite:
+  - Retrieve its **azimuth (`az`)** and **elevation (`ea`)**.
+  - Find the **azimuth interval** to which the satellite belongs.
+  - **Interpolate the theoretical elevation angle** for the given azimuth.
+  - **Calculate the difference** between the actual and theoretical elevation angles.
+  - Check if the satellite's **elevation is greater than or equal** to the theoretical elevation, marking it as visible if the condition is met.
 
-% Step 4: Sort and Remove Satellites with Large Elevation Angle Differences
-% Identify the satellites that are invisible (those with large differences between actual and theoretical elevation).
-% Sort the invisible satellites by the magnitude of the elevation difference.
-% Gradually remove satellites with the largest elevation differences until there are at least 4 visible satellites remaining.
+## Step 4: Sort and Remove Satellites with Large Elevation Angle Differences
+- **Identify the satellites that are invisible** (those with large differences between actual and theoretical elevation).
+- **Sort the invisible satellites** by the magnitude of the elevation difference.
+- **Gradually remove satellites** with the largest elevation differences until there are at least 4 visible satellites remaining.
 
-% Step 5: Check for Sufficient Visible Satellites
-% Check if the number of visible satellites is less than 4.
-% If fewer than 4 visible satellites are present, issue a warning, as accurate positioning cannot be solved.
-% If 4 or more satellites are visible, proceed with positioning calculations (assumed to be handled by a separate function).
+## Step 5: Check for Sufficient Visible Satellites
+- **Check if the number of visible satellites** is less than 4.
+  - If fewer than 4 visible satellites are present, **issue a warning**, as accurate positioning cannot be solved.
+  - If 4 or more satellites are visible, proceed with positioning calculations (assumed to be handled by a separate function).
 
-% Step 6: Visualization of Visible and Invisible Satellites
-% Plot the azimuth and elevation of visible satellites using a polar plot, represented with red markers.
-% Plot invisible satellites (affected by multipath or blockage) with blue markers, providing a visual representation of satellite visibility.
+## Step 6: Visualization of Visible and Invisible Satellites
+- **Plot the azimuth and elevation** of visible satellites using a polar plot, represented with **red markers**.
+- **Plot invisible satellites** (affected by multipath or blockage) with **blue markers**, providing a visual representation of satellite visibility.
+
+### Calculation and Result Analysis
+
+We introduce the skymask to improve the GNSS positioning performance by using the Urban data provided. The result is shown below:
 
 ## Task 3: RAIM (Receiver Autonomous Integrity Monitoring)
 
@@ -117,47 +124,53 @@ The detailed MATLAB code for implementing the RAIM algorithm, including data ini
 
 ### Steps
 
-1. **Data Initialization**
-   In this initial step, the predefined error variances for different GNSS signal components are set, including:
-   - **Pseudorange correction error variance** (`sigma_UDRE`),
-   - **Vertical ionospheric error variance** (`sigma_UIVE`),
-   - **Signal-to-noise ratio error variance** (`sigma_SNR`),
-   - **Multipath error variance at 45 degrees** (`sigma_m45`),
-   - **Tropospheric error variance** (`sigma_trv`).
+## Step 1: Data Initialization
+- In this initial step, the predefined error variances for different GNSS signal components are set, including:
+  - **Pseudorange correction error variance** (`sigma_UDRE`),
+  - **Vertical ionospheric error variance** (`sigma_UIVE`),
+  - **Signal-to-noise ratio error variance** (`sigma_SNR`),
+  - **Multipath error variance at 45 degrees** (`sigma_m45`),
+  - **Tropospheric error variance** (`sigma_trv`).
 
-   The satellite elevation (`satEA`) and azimuth (`satAZ`) angles of the satellites are extracted from the GNSS data. The number of visible satellites (`N`) is also defined based on the available data.
+- The satellite elevation (`satEA`) and azimuth (`satAZ`) angles of the satellites are extracted from the GNSS data.
+- The number of visible satellites (`N`) is also defined based on the available data.
 
-2. **Satellite Variance**
-   For each satellite, the total error variance (`sigma_i`) is calculated by combining the individual error components based on the satellite's elevation angle. This calculation accounts for various error sources such as ionospheric, multipath, and tropospheric effects, which vary with the elevation of the satellite.
+## Step 2: Calculate Satellite Variance
+- For each satellite, the total error variance (`sigma_i`) is calculated by combining the individual error components based on the satellite's elevation angle.
+- This calculation accounts for various error sources such as ionospheric, multipath, and tropospheric effects, which vary with the elevation of the satellite.
 
-3. **Construct the Weight Matrix**
-   A diagonal weight matrix (`W`) is created, where each diagonal element corresponds to the error variance squared (`sigma_i^2`) for each satellite. This matrix is used in the weighted least squares (WLS) solution to weight the satellites' measurements according to their variances.
+## Step 3: Construct the Weight Matrix
+- A diagonal weight matrix (`W`) is created, where each diagonal element corresponds to the error variance squared (`sigma_i^2`) for each satellite.
+- This matrix is used in the weighted least squares (WLS) solution to weight the satellites' measurements according to their variances.
 
-4. **Set Probability of False Alarm (PFA) and Threshold Calculation**
-   The probability of false alarm (`PFA`) is set to a small value (e.g., \(10^{-7}\)), representing the desired confidence level for detecting faulty measurements. Based on this, the chi-squared threshold is calculated using the degrees of freedom (`N - 4`). The threshold will be used to determine if the weighted sum of squared errors (WSSE) is within an acceptable range.
+## Step 4: Set Probability of False Alarm (PFA) and Threshold Calculation
+- The probability of false alarm (`PFA`) is set to a small value (e.g., \(10^{-7}\)), representing the desired confidence level for detecting faulty measurements.
+- Based on this, the chi-squared threshold is calculated using the degrees of freedom (`N - 4`). The threshold will be used to determine if the weighted sum of squared errors (WSSE) is within an acceptable range.
 
-5. **Construct the Observation Matrix**
-   The observation matrix (`G`) is created to map the satellite measurements (pseudorange data) to the receiver's position in the X, Y, and Z directions. This matrix helps to establish the relationship between the satellite positions and the observed pseudoranges.
+## Step 5: Construct the Observation Matrix
+- The observation matrix (`G`) is created to map the satellite measurements (pseudorange data) to the receiver's position in the X, Y, and Z directions.
+- This matrix helps to establish the relationship between the satellite positions and the observed pseudoranges.
 
-6. **Weighted Least Squares Solution**
-   The weighted least squares solution is calculated to estimate the receiver's position by solving for the position vector `x` using the formula:
-   
-   ```matlab
-   x = (G^T W^(-1) G)^(-1) G^T W^(-1) y
-   
-   This step uses the observation matrix and the weight matrix to minimize the error in the position solution.
+## Step 6: Weighted Least Squares Solution
+- The weighted least squares solution is calculated to estimate the receiver's position by solving for the position vector `x` using the formula:
 
-7. ### Calculate Weighted Sum of Squared Errors (WSSE)
+  \[
+  x = \left( (G^T W G)^{-1} G^T W y \right)
+  \]
 
-   The weighted sum of squared errors (WSSE) is calculated to quantify the discrepancy between the observed pseudoranges and the predicted measurements based on the estimated position. If the WSSE exceeds a predefined threshold, it indicates potential faulty measurements that need to be addressed.
+- This step uses the observation matrix and the weight matrix to minimize the error in the position solution.
 
-8. ### Remove Satellites with Large Contributions
+## Step 7: Calculate Weighted Sum of Squared Errors (WSSE)
+- The weighted sum of squared errors (WSSE) is calculated to quantify the discrepancy between the observed pseudoranges and the predicted measurements based on the estimated position.
+- If the WSSE exceeds a predefined threshold, it indicates potential faulty measurements that need to be addressed.
 
-   If the WSSE exceeds the threshold, satellites with the largest residual contributions are identified and removed. This step ensures that only reliable satellites contribute to the final position solution. The process repeats until at least 4 satellites remain.
+## Step 8: Remove Satellites with Large Contributions
+- If the WSSE exceeds the threshold, satellites with the largest residual contributions are identified and removed.
+- This step ensures that only reliable satellites contribute to the final position solution. The process repeats until at least 4 satellites remain.
 
-9. ### Chi-Squared Threshold Calculation Function
-
-   The chi-squared threshold is calculated using the chi-squared distribution based on the number of satellites and the false alarm probability (PFA). This threshold is used to assess whether the position solution is statistically valid and to exclude outliers (faulty measurements).
+## Step 9: Chi-Squared Threshold Calculation Function
+- The chi-squared threshold is calculated using the chi-squared distribution based on the number of satellites and the false alarm probability (PFA).
+- This threshold is used to assess whether the position solution is statistically valid and to exclude outliers (faulty measurements).
 
 ## Task 4: Low Earth Orbit (LEO) Satellites
 
