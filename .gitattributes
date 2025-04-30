@@ -1,2 +1,124 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# AAE6102 Assignment 2
+
+## Task 1: Differential GNSS Positioning
+
+### Principles and Mechanisms
+
+- **DGNSS** improves standard GNSS by using reference stations to transmit correction signals that compensate for errors in satellite data, such as ionospheric and tropospheric delays. These corrections improve positioning accuracy but require access to a nearby reference station or network.
+
+- **RTK** uses carrier phase measurements of GNSS signals, offering centimeter-level precision. It requires a base station or a correction service that continuously provides real-time correction data, making it highly accurate but complex.
+
+- **PPP** operates by using precise satellite orbit and clock data to correct positioning, offering high accuracy, especially in post-processing. Real-time PPP is more challenging and computationally intensive but can achieve high accuracy in remote areas.
+
+- **PPP-RTK** combines the best of both, providing real-time corrections like RTK with the global coverage of PPP, offering high-precision positioning without the need for nearby base stations.
+
+### Accuracy and Precision
+
+- **DGNSS** provides 1-3 meter accuracy, suitable for general smartphone navigation but not for precision tasks like autonomous driving.
+
+- **RTK** delivers centimeter-level accuracy, making it ideal for high-precision applications like surveying or autonomous vehicles.
+
+- **PPP** offers sub-meter to centimeter accuracy but struggles with real-time performance, as post-processing is typically needed for high-precision results.
+
+- **PPP-RTK** combines centimeter-level accuracy with real-time corrections, making it suitable for dynamic applications like autonomous driving or high-precision navigation.
+
+### Synchronization and Latency
+
+- **DGNSS** involves minimal synchronization, with corrections transmitted from reference stations. Latency is low, but it may not support dynamic applications requiring real-time updates.
+
+- **RTK** requires synchronization between the base station and the mobile device. It has very low latency, providing real-time positioning updates ideal for dynamic environments.
+
+- **PPP** generally has higher latency, especially for real-time corrections. It’s not optimal for real-time navigation but is suitable for high-accuracy post-processing.
+
+- **PPP-RTK** offers low latency, combining real-time updates and high precision, making it ideal for fast-moving applications like autonomous vehicles.
+
+### Infrastructure Requirements
+
+- **DGNSS** needs a network of reference stations for corrections. Smartphones can access these corrections via mobile networks, but infrastructure availability may vary by location.
+
+- **RTK** requires a base station or access to an RTK network. A constant communication link (e.g., 4G/5G) is necessary for real-time corrections, which can be expensive and may not be available everywhere.
+
+- **PPP** doesn’t require local infrastructure, relying on satellite-based corrections or cloud services. However, real-time PPP requires high computational power and internet connectivity.
+
+- **PPP-RTK** also needs a reliable communication link and access to satellite-based correction services. It combines high infrastructure demands from both RTK and PPP.
+
+### Interference and Signal Robustness
+
+- **DGNSS** is susceptible to interference in urban canyons and areas with poor satellite visibility. Its performance degrades in environments with high multipath effects.
+
+- **RTK** is highly sensitive to signal degradation, particularly in complex environments where line-of-sight to satellites is obstructed.
+
+- **PPP** is more robust to local interference, as it doesn’t rely on local reference stations, but still needs good satellite visibility.
+
+- **PPP-RTK** benefits from the global corrections of PPP and the real-time processing of RTK, making it more resilient to interference than RTK alone.
+
+### Cost and Accessibility
+
+- **DGNSS** is relatively low-cost and accessible, with many applications available for smartphone navigation. It’s suitable for everyday users.
+
+- **RTK** is expensive due to the need for base stations and specialized hardware, limiting its accessibility for regular consumers.
+
+- **PPP** is cheaper in terms of infrastructure, but the computational power required for real-time performance may limit its use in smartphones.
+
+- **PPP-RTK** is the most expensive and complex, requiring both real-time data transmission and high-precision hardware.
+
+### Integration with Smartphones
+
+- **DGNSS** is the easiest to integrate into smartphones, using existing GNSS receivers and network connections for corrections.
+
+- **RTK** requires additional hardware (RTK receivers) and network connectivity, which may not be easily integrated into smartphones.
+
+- **PPP** can be integrated with smartphones using cloud processing, but real-time functionality is limited due to computational demands.
+
+- **PPP-RTK** faces similar integration challenges as RTK, with high infrastructure and processing requirements.
+
+### Use Cases and Applications
+
+- **DGNSS** enhances navigation for general users, improving accuracy in outdoor environments for driving, walking, and cycling.
+
+- **RTK** is ideal for autonomous driving, high-precision surveying, or drone navigation, where centimeter-level accuracy is required.
+
+- **PPP** is used in remote navigation or geospatial applications where post-processing is acceptable, but real-time navigation is not the primary need.
+
+- **PPP-RTK** is perfect for autonomous vehicles and precision navigation in urban environments that require both high precision and real-time updates.
+
+### Conclusion
+
+For smartphone navigation, **DGNSS** provides accessible and sufficient accuracy for everyday users. **RTK** and **PPP-RTK** are better suited for high-precision, professional applications, but their high infrastructure demands and costs limit widespread use in consumer smartphones. **PPP** offers high accuracy but is better suited for post-processing applications rather than real-time navigation on smartphones.
+
+## Task 2: GNSS in Urban Areas
+
+### MATLAB Code Framework
+
+The following MATLAB code framework was implemented to process satellite visibility data and improve positioning accuracy. Each step in the process is outlined below, along with the corresponding code in `Assign2_Task2.m`.
+
+```matlab
+% Step 1: Data Initialization and Setup
+% Extract actual satellite elevation (satEA) and azimuth (satAZ) angles from the provided GNSS solutions.
+% Define theoretical satellite elevation angles (theoretical_elevation) for various azimuth intervals based on the skymask.
+% Set the elevation threshold to filter out satellites with elevations below a certain value (elevation_threshold).
+
+% Step 2: Initialize Visibility and Data Storage
+% Create a logical array 'visible' initialized to false, assuming initially that no satellites are visible.
+% Initialize an array 'angle_diff' to store the difference between the actual and theoretical elevation angles for each satellite.
+
+% Step 3: Loop Through Each Satellite to Determine Visibility
+% For each satellite, retrieve its azimuth (az) and elevation (ea).
+% Find the azimuth interval to which the satellite belongs.
+% Interpolate the theoretical elevation angle for the given azimuth.
+% Calculate the difference between the actual and theoretical elevation angles.
+% Check if the satellite's elevation is greater than or equal to the theoretical elevation, marking it as visible if the condition is met.
+
+% Step 4: Sort and Remove Satellites with Large Elevation Angle Differences
+% Identify the satellites that are invisible (those with large differences between actual and theoretical elevation).
+% Sort the invisible satellites by the magnitude of the elevation difference.
+% Gradually remove satellites with the largest elevation differences until there are at least 4 visible satellites remaining.
+
+% Step 5: Check for Sufficient Visible Satellites
+% Check if the number of visible satellites is less than 4.
+% If fewer than 4 visible satellites are present, issue a warning, as accurate positioning cannot be solved.
+% If 4 or more satellites are visible, proceed with positioning calculations (assumed to be handled by a separate function).
+
+% Step 6: Visualization of Visible and Invisible Satellites
+% Plot the azimuth and elevation of visible satellites using a polar plot, represented with red markers.
+% Plot invisible satellites (affected by multipath or blockage) with blue markers, providing a visual representation of satellite visibility.
