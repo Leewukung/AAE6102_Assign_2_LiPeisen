@@ -155,7 +155,7 @@ The detailed MATLAB code for implementing the RAIM algorithm, including data ini
 - The weighted least squares solution is calculated to estimate the receiver's position by solving for the position vector `x` using the formula:
 
   \[
-  x = \left( (G^T W G)^{-1} G^T W y \right)
+  x = (G^T W G)^{-1} G^T W y
   \]
 
 - This step uses the observation matrix (`G`) and the weight matrix (`W`) to minimize the error in the position solution.
