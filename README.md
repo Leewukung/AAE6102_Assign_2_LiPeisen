@@ -158,7 +158,7 @@ The detailed MATLAB code for implementing the RAIM algorithm, including data ini
   x = \left( (G^T W G)^{-1} G^T W y \right)
   \]
 
-- This step uses the observation matrix and the weight matrix to minimize the error in the position solution.
+- This step uses the observation matrix (`G`) and the weight matrix (`W`) to minimize the error in the position solution.
 
 ## Step 7: Calculate Weighted Sum of Squared Errors (WSSE)
 - The weighted sum of squared errors (WSSE) is calculated to quantify the discrepancy between the observed pseudoranges and the predicted measurements based on the estimated position.
@@ -321,10 +321,6 @@ Assume you are an expert in GNSS technology and its applications in remote sensi
    - **Complex Data Processing**: Separating direct and reflected signals requires advanced algorithms and computational resources, which can complicate data processing.
 
    - **Limited Spatial Resolution**: Due to the wide footprint of reflected signals, GNSS-R lacks the high spatial resolution of traditional radar or optical methods.
-
-**Conclusion**
-
-In summary, GNSS-R is a versatile and cost-effective tool for environmental and atmospheric monitoring, offering unique benefits over traditional remote sensing methods. While challenges such as signal interference and resolution limitations exist, continued technological innovations will improve its applications and impact in remote sensing.
 
 **Conclusion**
 
