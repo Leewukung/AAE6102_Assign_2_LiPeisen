@@ -124,8 +124,6 @@ The RAIM algorithm is based on the concept of using weighted least squares (WLS)
 
 The detailed MATLAB code for implementing the RAIM algorithm, including data initialization, variance calculations, weighted least squares solution, and satellite exclusion, can be found in the `Assign2_Task3.m` file.
 
-### Steps
-
 ## Step 1: Data Initialization
 - In this initial step, the predefined error variances for different GNSS signal components are set, including:
   - **Pseudorange correction error variance** (`sigma_UDRE`),
