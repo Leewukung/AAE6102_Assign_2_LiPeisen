@@ -144,7 +144,7 @@ The detailed MATLAB code for implementing the RAIM algorithm, including data ini
 - This matrix is used in the weighted least squares (WLS) solution to weight the satellites' measurements according to their variances.
 
 ## Step 4: Set Probability of False Alarm (PFA) and Threshold Calculation
-- The probability of false alarm (`PFA`) is set to a small value (e.g., \(10^{-7}\)), representing the desired confidence level for detecting faulty measurements.
+- The probability of false alarm (`PFA`) is set to a small value (e.g., 10^-7), representing the desired confidence level for detecting faulty measurements.
 - Based on this, the chi-squared threshold is calculated using the degrees of freedom (`N - 4`). The threshold will be used to determine if the weighted sum of squared errors (WSSE) is within an acceptable range.
 
 ## Step 5: Construct the Observation Matrix
