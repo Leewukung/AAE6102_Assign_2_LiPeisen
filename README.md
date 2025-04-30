@@ -1,6 +1,6 @@
 # AAE6102 Assignment 2
 
-Model: ChatGPT 4o
+Model: ChatGPT 4o  
 Comment: It is more logical and greater for comparison and conclusion in English contexts.
 
 ## Task 1: Differential GNSS Positioning
