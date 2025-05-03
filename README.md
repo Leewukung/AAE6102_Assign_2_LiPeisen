@@ -1,7 +1,8 @@
 # AAE6102 Assignment 2
 
 Model: ChatGPT 4o  
-Comment: It is more logical and greater for comparison and conclusion in English contexts.
+Comment: It is more logical and greater for comparison and conclusion in English contexts.  
+Since the language model based on the proxy pattern is used, the link cannot be shared directly. Therefore, the relevant prompt words are pasted below tasks for reference
 
 ## Task 1: Differential GNSS Positioning
 
